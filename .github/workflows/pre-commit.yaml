@@ -1,0 +1,28 @@
+name: pre-commit
+
+on:
+  pull_request:
+
+jobs:
+  run-all:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+    - name: setup python
+      run: echo "::set-env name=PY::$(python --version --version | sha256sum | cut -d' ' -f1)"
+    - name: setup tflint
+      run: |-
+        sudo apt-get install unzip -y
+        curl -L "$(curl -Ls https://api.github.com/repos/terraform-linters/tflint/releases/latest | grep -o -E "https://.+?_linux_amd64.*zip")" > tflint.zip
+        sudo unzip -o tflint.zip -d /usr/bin
+        sudo chmod +x /usr/bin/tflint
+    - name: setup terraform_docs
+      run: curl -L "$(curl -Ls https://api.github.com/repos/segmentio/terraform-docs/releases/latest | grep -o -E "https://.+?-linux-amd64")" > terraform-docs && chmod +x terraform-docs && sudo mv terraform-docs /usr/bin/
+    - uses: actions/cache@v1
+      with:
+        path: ~/.cache/pre-commit
+        key: pre-commit|${{ env.PY }}|${{ hashFiles('.pre-commit-config.yaml') }}
+    - uses: pre-commit/action@v1.0.1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
