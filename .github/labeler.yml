@@ -1,0 +1,11 @@
+terraform:
+  - .terraformignore
+  - .terraformversion
+  - terraform/**/*.tf
+
+ci:
+  - .github/**/*
+  - Makefile
+
+repo:
+  - ./*
