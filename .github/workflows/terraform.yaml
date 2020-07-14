@@ -31,9 +31,13 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
+<<<<<<< HEAD
           const output = `(${{steps.init.outputs.exitcode == 0 ? ':x:' : ':white_check_mark:'}}) Terraform Initialization
           (${{steps.validate.outputs.exitcode == 0 ? ':x:' : ':white_check_mark:'}}) Terraform Validation
           (${{steps.plan.outputs.exitcode == 0 ? ':x:' : ':white_check_mark:'}}) Terraform Plan
+=======
+
+>>>>>>> chore: terraform workflow fix
 
           <details><summary>Show Plan</summary>
 
