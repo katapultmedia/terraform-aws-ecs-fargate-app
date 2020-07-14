@@ -31,9 +31,9 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          const output = `${{steps.init.outputs.exitcode == 0 ? ':x:' : ':white_check_mark:'}} Terraform Initialization
-          ${{steps.validate.outputs.exitcode == 0 ? ':x:' : ':white_check_mark:'}} Terraform Validation
-          ${{steps.plan.outputs.exitcode == 0 ? ':x:' : ':white_check_mark:'}} Terraform Plan
+          const output = `- [${{steps.init.outputs.exitcode == 0 ? 'X' : ''}}] Terraform Initialization
+          - [${{steps.validate.outputs.exitcode == 0 ? 'X' : ''}}] Terraform Validation
+          - [${{steps.plan.outputs.exitcode == 0 ? 'X' : ''}}] Terraform Plan
 
           <details><summary>Show Plan</summary>
 
