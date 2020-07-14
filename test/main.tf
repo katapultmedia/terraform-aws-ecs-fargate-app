@@ -5,4 +5,4 @@ provider "aws" {
 
 resource "null_resource" "cluster" {
 
-  }
+}
