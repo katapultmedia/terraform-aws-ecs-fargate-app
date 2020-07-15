@@ -2,7 +2,8 @@ name: terraform
 
 on:
   - pull_request
-
+env:
+  working_directory: ./test
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -10,13 +11,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install terraform
       uses: hashicorp/setup-terraform@v1
-      env:
-        tf_actions_working_dir: ./test
 
     - name: Terraform Init
       id: init
-      run: terraform init
-      working-directory: env.tf_actions_working_dir
+      run: terraform init &&
+           echo ${{env.working_directory}}
+      working-directory: env.working_directory
 
     - name: Terraform Plan
       id: plan
