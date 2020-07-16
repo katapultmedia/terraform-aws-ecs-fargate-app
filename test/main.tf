@@ -1,6 +1,5 @@
 provider "aws" {
   region  = "us-west-2"
-  profile = "eng-dev"
 }
 
 module "core" {
@@ -10,7 +9,7 @@ module "core" {
   container_image              = "image-test"
   container_cpu                = 512
   container_memory             = 512
-  container_memory_reservation = 512
+  container_memory_reservation = 256
   container_port               = 4400
 
 
