@@ -1,11 +1,8 @@
-terraform:
-  - .terraformignore
-  - .terraformversion
-  - terraform/**/*.tf
+test:
+  - tests
 
 ci:
   - .github/**/*
-  - Makefile
 
-repo:
-  - ./*
+core:
+  - .tf
