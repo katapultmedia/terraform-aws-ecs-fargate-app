@@ -42,9 +42,9 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          const tfInitStatus = ${{steps.init.outputs.exitcode == 1}} ? ':x:' : ':white_check_mark:'
-          const tfValidationStatus = ${{steps.validate.outputs.exitcode == 1}} ? ':x:' : ':white_check_mark:'
-          const tfPlanStatus = ${{steps.plan.outputs.exitcode == 1}} ? ':x:' : ':white_check_mark:'
+          const tfInitStatus = ${{steps.init.outputs.exitcode == 0}} ? ':white_check_mark:' : ':x:'
+          const tfValidationStatus = ${{steps.validate.outputs.exitcode == 0}} ? ':white_check_mark:' : ':x:'
+          const tfPlanStatus = ${{steps.plan.outputs.exitcode == 0}} ? ':white_check_mark:' : ':x:'
 
           const output = `${tfInitStatus} Terraform Initialization
           ${tfValidationStatus} Terraform Validation
