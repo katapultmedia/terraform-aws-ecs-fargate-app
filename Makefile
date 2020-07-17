@@ -7,12 +7,9 @@ help:
 	@echo "Available targets:"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-<<<<<<< HEAD
-=======
 # List of targets the `readme` target should call before generating the readme
 export README_DEPS ?= docs/targets.md docs/terraform.md
 
->>>>>>> chore: added pre-commit.yaml updated Makefile, and README
 init: ## Install required tools for local environment
 	brew install tfenv || exit 0
 	tfenv install || exit 0
@@ -21,12 +18,8 @@ init: ## Install required tools for local environment
 fmt: ## Formats the TF
 	terraform fmt -recursive
 
-<<<<<<< HEAD
-init: ## Initializes TF directory
+tfinit: ## Initializes TF directory
 	terraform init
-=======
-init: ## Initilizes TF directory
->>>>>>> chore: added pre-commit.yaml updated Makefile, and README
 
 plan: ## Creates an execution plan
 	terraform plan
