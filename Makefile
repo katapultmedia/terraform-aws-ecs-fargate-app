@@ -18,7 +18,7 @@ fmt: ## Formats the TF
 init: ## Initializes TF directory
 	terraform init
 
-plan: init ## Creates an execution plan
+plan: ## Creates an execution plan
 	terraform plan
 
 apply: ## Applies the changes/actions to the execution plan
